@@ -1,61 +1,41 @@
 gsap.registerPlugin(ScrollTrigger);
 
 window.addEventListener("DOMContentLoaded", () => {
-    buildBromedinPipeline();
-});
-
-function buildBromedinPipeline() {
-    // Master timeline governing the entire locked frame sequence
-    const tl = gsap.timeline({
+    // Locks the track to the screen and links everything to user scroll speed
+    gsap.to(".truck-track", {
+        x: "-200vw", // Moves across the width of the extra sections
+        ease: "none",
         scrollTrigger: {
-            trigger: ".scroll-engine",
+            trigger: ".scroll-wrapper",
             start: "top top",
             end: "bottom bottom",
-            scrub: 0.6, // Fast, crisp scroll tracking reaction time
+            scrub: 1, // Smoothly captures trackpad or scrollwheel momentum
             pin: true
         }
     });
 
-    // STEP 1: Bring the first title block out into view immediately
-    tl.to(".headline-block.h1", { opacity: 1, y: 0, scale: 1, duration: 2 })
-      .to(".daf-ghp .truck-asset", { scale: 1.05, duration: 2 }, "<");
-
-    // STEP 2: Simultaneously pan the camera and pull the DAF GHP text cards away
-    tl.to(".fleet-carrier", { 
-        x: "-100vw", 
-        duration: 8, 
-        ease: "power2.inOut" 
-    })
-    .to(".headline-block.h1", { 
-        opacity: 0, 
-        y: -40, 
-        duration: 3 
-    }, "<")
-    // Parallax sky offset move to give deep 3D background depth
-    .to(".skyline-bg", {
-        backgroundPosition: "40% 50%",
-        duration: 8,
-        ease: "power2.inOut"
-    }, "<")
-    
-    // STEP 3: Reveal the DAF Refrigerated Rig Content Card beautifully
-    .to(".headline-block.h2", { 
-        opacity: 1, 
-        y: 0, 
-        scale: 1, 
-        duration: 3 
-    }, "-=2")
-    .fromTo(".daf-reefer .truck-asset", 
-        { scale: 0.9, rotation: -1 }, 
-        { scale: 1.05, rotation: 0, duration: 4, ease: "power1.out" }, 
-        "-=2"
-    )
-
-    // STEP 4: Ultimate Finale - Zoom out slightly into final company branding display
-    .to(".headline-block.h2", { opacity: 0, y: -40, duration: 3 })
-    .to(".headline-block.h3", { opacity: 1, y: 0, duration: 3 })
-    .to(".truck-blueprint-overlay", { 
-        borderColor: "rgba(57, 255, 20, 0.3)", 
-        duration: 2 
+    // Handle timing for the text fades and technical grid pop on section 2
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".scroll-wrapper",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1
+        }
     });
-}
+
+    // Sequence details
+    timeline
+        // Fade first text out right as the DAF GHP truck rolls away
+        .to(".segment-1 .text-overlay", { opacity: 0, y: -30, duration: 2 })
+        
+        // As the DAF Refrigerated Truck enters, pull up the new text copy
+        .from(".segment-2 .text-overlay", { opacity: 0, y: 30, duration: 2 }, "+=1")
+        
+        // Turn on the illuminated tactical digital yard matrix over the reefer truck
+        .to(".tech-grid-matrix", { opacity: 1, duration: 1.5 })
+        
+        // Clear them out for the final brand landing message slide
+        .to(".segment-2 .text-overlay, .tech-grid-matrix", { opacity: 0, duration: 2 }, "+=1")
+        .from(".segment-3 .text-overlay", { opacity: 0, scale: 0.95, duration: 2 });
+});
