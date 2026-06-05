@@ -5,85 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BROMEDIN ENTERPRISE PVT LIMITED</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Premium GSAP Core + ScrollTrigger Core -->
+    <!-- GSAP for core animation & ScrollTrigger to lock the scroll -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-    <!-- Cinematic Overlay Overlay Lines -->
-    <div class="grid-overlay"></div>
-
-    <header class="luxury-nav">
-        <div class="brand">BROMEDIN <span class="legal">PVT LTD</span></div>
-        <div class="nav-links">
-            <a href="#fleet" class="active">Fleet Matrix</a>
-            <a href="#tech">Autonomous Yard</a>
-            <button class="dispatch-btn">Secure Dispatch</button>
+    <!-- THE TOP FIXED DASHBOARD NAV BAR -->
+    <header class="terminal-nav">
+        <div class="nav-left">
+            <span class="terminal-logo">⬜ BROMEDIN</span>
+            <span class="nav-divider">|</span>
+            <span class="nav-item">System</span>
+            <span class="nav-item">Markets</span>
+            <span class="nav-item">Insights</span>
+            <span class="nav-item">Resources</span>
+            <span class="nav-item">About</span>
+        </div>
+        <div class="nav-right">
+            <span class="phone-icon">📞</span>
+            <button class="join-btn">Join network</button>
         </div>
     </header>
 
-    <main>
-        <!-- SCROLL CANVAS INTERACTIVE CORE -->
-        <section class="scroll-engine" id="fleet">
+    <!-- THE PINNED MAIN VIEWPORT CONTAINER -->
+    <div class="scroll-wrapper">
+        <section class="scene-container">
             
-            <!-- THE CINEMATIC THEATER (STAY STUCK) -->
-            <div class="theater-stage">
+            <!-- THE HORIZONTAL DRIVING TRACK -->
+            <div class="truck-track">
                 
-                <!-- Background Dynamic Environment -->
-                <div class="skyline-bg"></div>
-
-                <!-- FLEET WRAPPER: THE TRUCKS ARE TRANSLATING HERE -->
-                <div class="fleet-carrier">
-                    
-                    <!-- DAF GHP Truck Rig Section -->
-                    <div class="truck-bay daf-ghp">
-                        <div class="truck-blueprint-overlay"></div>
-                        <!-- High Res Transparent Side Asset -->
-                        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=1200" alt="DAF GHP TRUCK" class="truck-asset">
-                        
-                        <!-- Glowing UI Target Systems -->
-                        <div class="hud-target telemetry-1">
-                            <div class="ping-line"></div>
-                            <p>SYSTEMS: ACTIVE // MULTI-TORQUE</p>
-                        </div>
+                <!-- Slide 1: The DAF GHP Truck Introduction -->
+                <div class="slide segment-1">
+                    <div class="text-overlay">
+                        <h1>We have reinvented the future of freight.</h1>
                     </div>
-
-                    <!-- DAF Refrigerated Truck Rig Section -->
-                    <div class="truck-bay daf-reefer">
-                        <div class="truck-blueprint-overlay cold-chain"></div>
-                        <img src="https://images.unsplash.com/photo-1516576475557-9f8854bc4036?auto=format&fit=crop&q=80&w=1200" alt="DAF REFRIGERATED TRUCK" class="truck-asset">
-                        
-                        <div class="hud-target telemetry-2">
-                            <div class="ping-line cold"></div>
-                            <p>THERMO CONTROL: OPTIMAL // -18°C</p>
-                        </div>
-                    </div>
-
+                    <!-- Replace with your clean DAF GHP image -->
+                    <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=1400" alt="DAF GHP Truck" class="truck-image">
                 </div>
 
-                <!-- TELEMETRY / HEADING CARD OVERSHADOW -->
-                <div class="dynamic-titles">
-                    <div class="headline-block h1">
-                        <span class="meta-tag">FLEET CAPABILITY 01</span>
-                        <h1>DAF GHP PLATFORM</h1>
-                        <p class="desc">Engineered for extreme long-haul multi-torque endurance across complex supply chain networks.</p>
+                <!-- Slide 2: The DAF Refrigerated Truck & AI Telemetry -->
+                <div class="slide segment-2">
+                    <div class="text-overlay">
+                        <h1>AI-native technology that turns managing yards into a science.</h1>
                     </div>
-                    <div class="headline-block h2">
-                        <span class="meta-tag">FLEET CAPABILITY 02</span>
-                        <h1>DAF REFRIGERATED RIG</h1>
-                        <p class="desc">Advanced climate-locked storage architectures continuously monitored via autonomous micro-telemetry.</p>
-                    </div>
-                    <div class="headline-block h3">
-                        <span class="meta-tag">NEXT-GEN LOGISTICS</span>
-                        <h1>BROMEDIN ENTERPRISE</h1>
-                        <p class="desc">Moving past physical limitations. Combining heavy transport mechanics with digital yard intelligence.</p>
+                    <!-- Replace with your clean DAF Refrigerated image -->
+                    <img src="https://images.unsplash.com/photo-1516576475557-9f8854bc4036?auto=format&fit=crop&q=80&w=1400" alt="DAF Refrigerated Truck" class="truck-image reefer">
+                    
+                    <!-- Tech overlay grid that fades in over the reefer truck -->
+                    <div class="tech-grid-matrix"></div>
+                </div>
+
+                <!-- Slide 3: The Final Concrete Statement -->
+                <div class="slide segment-3">
+                    <div class="text-overlay central">
+                        <h1>Imagine the yard as an intelligent bridge seamlessly connecting highway to warehouse.</h1>
+                        <p class="brand-sub">BROMEDIN ENTERPRISE PVT LIMITED</p>
                     </div>
                 </div>
 
             </div>
+
         </section>
-    </main>
+    </div>
 
     <script src="app.js"></script>
 </body>
