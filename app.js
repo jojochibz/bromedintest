@@ -1,0 +1,62 @@
+// Register GSAP Plugin
+gsap.registerPlugin(ScrollTrigger);
+
+window.addEventListener('DOMContentLoaded', () => {
+    initBromedinAnimations();
+});
+
+function initBromedinAnimations() {
+    
+    // 1. Initial Entry Reveal Animations
+    gsap.from(".reveal-text", {
+        opacity: 0,
+        y: 40,
+        duration: 1.2,
+        ease: "power4.out"
+    });
+    
+    gsap.from(".fade-sub", {
+        opacity: 0,
+        delay: 0.4,
+        duration: 1,
+        ease: "power2.out"
+    });
+
+    // 2. Master Fleet Scroll Pinning Timeline
+    const masterTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".animation-pin-zone",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1, // Smooth matching tracking to the velocity of the user trackball
+            pin: true, // Locks the screen layout in place while animations exhaust
+        }
+    });
+
+    // 3. Chain individual track translation updates inside our master timeline
+    masterTimeline
+        // Bring in first text slide
+        .to(".slide-card.step-1", { opacity: 1, translateY: 0, duration: 2 })
+        
+        // Pan viewport horizontally to transition seamlessly into the Cold Chain DAF Refrigerated Truck
+        .to(".fleet-composition", { 
+            x: "-100vw", 
+            duration: 6, 
+            ease: "power2.inOut" 
+        }, "+=1") // adds slight tracking cushion pause before driving away
+        
+        // Simultaneously exit text stage 1 and glide stage 2 cleanly forward
+        .to(".slide-card.step-1", { opacity: 0, translateY: -60, duration: 2 }, "<")
+        .to(".slide-card.step-2", { opacity: 1, translateY: 0, duration: 2 })
+        
+        // Add additional depth scaling effect to mimic extreme premium zoom mechanics 
+        .to(".truck-visual-placeholder.cold-chain", { 
+            scale: 1.05, 
+            borderColor: "rgba(0, 229, 255, 0.7)",
+            duration: 3 
+        })
+        
+        // Move towards concluding technical configuration statement block
+        .to(".slide-card.step-2", { opacity: 0, translateY: -60, duration: 2 })
+        .to(".slide-card.step-3", { opacity: 1, translateY: 0, duration: 2 });
+}
